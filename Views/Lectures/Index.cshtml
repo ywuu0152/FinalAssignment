@@ -10,6 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.lectureName)
@@ -28,30 +29,42 @@
         </th>
         <th></th>
     </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.lectureName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.grade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gradeNumber)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.lectureId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.lectureId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.lectureId })
-        </td>
-    </tr>
-}
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.lectureName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gradeNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.lectureId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.lectureId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.lectureId })
+            </td>
+        </tr>
+    }
+    </tbody>
 
 </table>
+
+
+@section Scripts {
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>$(document).ready(function () { $('.table').DataTable(); });</script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

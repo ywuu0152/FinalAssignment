@@ -58,11 +58,11 @@ namespace FinalAssignment
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "935049633232-ihg0vn0l1i7s929rostrd7kb10ergujr.apps.googleusercontent.com",
+                ClientSecret = "LCpHMnN8rwj7VJLHWEqhUXtl"
+            });
         }
     }
 }
