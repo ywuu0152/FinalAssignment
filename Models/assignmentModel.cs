@@ -39,4 +39,5 @@ namespace FinalAssignment.Models
                 .IsUnicode(false);
         }
     }
+
 }
