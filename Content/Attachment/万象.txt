@@ -1,0 +1,121 @@
+Topic: 5032平时班1 Week2
+Date: Aug 16, 2020 01:55 PM Beijing, Shanghai
+
+Meeting Recording:
+https://us02web.zoom.us/rec/share/6dFOIKmz-ntIbqeQyV3xfYMYJtS8T6a80CJI-6IKy0Z2n3Lmqa0nH8uE-Ca-Ejn0
+
+Access Password: w&p3*xW1
+
+
+
+
+主题: FIT5032 平时班2 Week3
+日期: 2020年8月23日 01:56 下午 北京，上海
+
+会议记录：
+https://us02web.zoom.us/rec/share/3e1XDK7cx0lJZK_2uW_Wefc7P4HDX6a80ydP_PBfmk6w27pKvSNHuryvxi8c4wH1
+
+访问密码: FIT5032@wx
+
+
+
+
+
+主题: FIT5032 平时班3 Week4
+日期: 2020年8月30日 05:03 下午 北京，上海
+
+会议记录：
+https://us02web.zoom.us/rec/share/vs8pIIH22UxJXc_xxEzQYIQePq7feaa8hCQa-6YPn0wFYr3GcrOmD_Y883P6tKxh
+
+访问密码: FIT5032@wx
+
+
+
+
+week5
+https://us02web.zoom.us/rec/share/xaSVGejgMXNr-RA0Rm2sVAsIOT7gyF8jI0z1fGdwDMRP0faEhAiV5zll4jMRvtTk.X4QHCV-kc4srjiQ_ 
+(Access Password: k^883Fai)
+
+
+
+
+主题: FIT5032 平时班5 Week6
+日期： 2020年9月13日 01:55 下午 北京，上海
+
+https://us02web.zoom.us/rec/share/EDy9sWsHwn2TZRaKObJXRRO9S5zHb98RLIcLfVzuiprxM33AFTorkW4equbCgu9S.TAr-0xMkFpvoxXq7 
+
+访问密码：8Q1%q%Gt
+
+
+
+
+主题: FIT5032 平时班6 mid2
+日期: 2020年10月4日 01:51 下午 北京，上海
+会议记录：
+https://us02web.zoom.us/rec/share/zexBFue4PO_GQmt6Tf6CGK9edafZ-BFulznHsyPUaIY2dIKuSgv_m_suSEqTJ-zR.7kfnkpbCwpZ-IFgE
+访问密码: FIT5032@wx
+
+"Mail" was successfully created and added to the next step.
+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
+
+
+
+// using SendGrid's C# Library
+// https://github.com/sendgrid/sendgrid-csharp
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
+using System.Threading.Tasks;
+
+namespace Example
+{
+    internal class Example
+    {
+        private static void Main()
+        {
+            Execute().Wait();
+        }
+
+        static async Task Execute()
+        {
+            var apiKey = Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("test@example.com", "Example User");
+            var subject = "Sending with SendGrid is Fun";
+            var to = new EmailAddress("test@example.com", "Example User");
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
+    }
+}
+
+主题: FIT5032 week8
+日期: 2020年10月11日 01:50 下午 北京，上海
+
+会议记录：
+https://us02web.zoom.us/rec/share/Wj1uQ2oq4-0wuBw2Gu-c3munGkrqwk5Hdc7bD8mojNPsFjS621CZAULTDbGTfLH6.DoseP3H5YlmAjhVY
+
+访问密码: fit5032@Wx
+
+
+
+
+主题: 5032 week 9
+会议开始时间 : 2020年10月18日 01:52 下午
+
+会议记录：
+https://us02web.zoom.us/rec/share/QVVguM1khvHxTYEdJ4Vh1Kg1mpAgwHnkzMoWssGb6aerblWD6iyaKxE4IX23sLcE.1uYpJkJdQpZHE7ee
+
+访问密码: g^23b#q3
+
+
+
+主题: FIT5032A3
+会议开始时间 : 2020年10月25日 01:54 下午
+
+会议记录：
+https://us02web.zoom.us/rec/share/3EYAIyzPTFvy99gX6L-_jOKCRCQWYzDTk-lI_pELzIGWVV3s3mYtgrLeXOOdkEVF.-lTsd0-RbHR99STI
+
+访问密码: FIT5032@AS3

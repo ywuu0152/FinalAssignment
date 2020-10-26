@@ -5,7 +5,10 @@
 }
 
 <h2>Index</h2>
-
+<div id="map" style="height:300px"></div>
+@section Scripts{
+    <script src="~/Scripts/Location.js"></script>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -26,26 +29,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.locationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.longitude)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.locationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.locationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.locationId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="coordinates">
+            <td>
+                @Html.DisplayFor(modelItem => item.locationName)
+            </td>
+            <td class="description">
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td class="latitude">
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td class="longitude">
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.locationId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.locationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.locationId })
+            </td>
+        </tr>
+    }
 
 </table>

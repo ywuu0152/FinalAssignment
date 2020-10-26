@@ -7,6 +7,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @* This is for the mapbox map. *@
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+    @*This is used for the Geocoding Mapbox API*@
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,6 +34,7 @@
                     <li>@Html.ActionLink("Lecture", "Index", "Lectures")</li>
                     <li>@Html.ActionLink("Tutor", "Index", "Tutors")</li>
                     <li>@Html.ActionLink("Location", "Index", "Locations")</li>
+                    <li>@Html.ActionLink("Send Email", "Send_Email", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
