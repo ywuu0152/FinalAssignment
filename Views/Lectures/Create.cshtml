@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Lecture</h4>
         <hr />
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @type = "text", @id = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,7 +66,26 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>">
+    <script>
+        $("#datepicker").datepicker({
+            "format": "yyyy/mm/dd",
+            "todayHighlight": true,
+            "defaultViewDate": "2020/11/11",
+            //"beforeShowDay": function (date) {
+            //    if (date.getMonth() == 10) {
+            //        if (date.getDate() == 11) {
+            //            return {
+            //                class: "active"
+            //            }
+            //        }
+            //    }
+            //}
+        })
+    </script>
+
 }
