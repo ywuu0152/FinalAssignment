@@ -49,15 +49,31 @@ namespace FinalAssignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "lectureId,lectureName,description,date,grade,gradeNumber")] Lecture lecture)
         {
-            if (ModelState.IsValid)
+            int i = lecture.gradeNumber;
+            if (i < 5)
             {
+                return RedirectToAction("Error", "Lectures");
+            }
+            else { 
+                if (ModelState.IsValid)
+                {
                 db.Lectures.Add(lecture);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
+                return View(lecture);
+           
             }
 
-            return View(lecture);
+            
         }
+
+        public ActionResult Error() 
+        {
+            return View();
+        
+        }
+
 
         // GET: Lectures/Edit/5
         [Authorize(Roles = "Tutor")]

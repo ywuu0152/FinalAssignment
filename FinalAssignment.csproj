@@ -359,6 +359,7 @@
     <Content Include="Views\Tutors\Details.cshtml" />
     <Content Include="Views\Tutors\Edit.cshtml" />
     <Content Include="Views\Tutors\Index.cshtml" />
+    <Content Include="Views\Lectures\Error.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
