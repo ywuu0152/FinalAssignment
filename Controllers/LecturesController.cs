@@ -36,6 +36,7 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Create
+        [Authorize(Roles = "Tutor")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Edit/5
+        [Authorize(Roles = "Tutor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Delete/5
+        [Authorize(Roles = "Tutor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
