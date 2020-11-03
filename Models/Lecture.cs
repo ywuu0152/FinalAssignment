@@ -23,7 +23,7 @@ namespace FinalAssignment.Models
         [Required]
         public string grade { get; set; }
 
-        [Range(0, 10000)]
+        [Range(0, 1000)]
         public int gradeNumber { get; set; }
     }
 }

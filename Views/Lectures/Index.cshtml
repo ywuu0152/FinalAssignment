@@ -6,57 +6,81 @@
 
 <h2>Index</h2>
 
+@if (TempData["lectureCreationFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["lectureCreationFailedMsg"]');
+    </script>
+}
+
+
+@if (TempData["lectureEditFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["lectureEditFailedMsg"]');
+    </script>
+}
+
+
+@if (TempData["lectureDeleteFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["lectureDeleteFailedMsg"]');
+    </script>
+}
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.lectureName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.grade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gradeNumber)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.lectureName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gradeNumber)
+            </th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.lectureName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gradeNumber)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.lectureId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.lectureId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.lectureId })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lectureName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gradeNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.lectureId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.lectureId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.lectureId })
+                </td>
+            </tr>
+        }
     </tbody>
 
 </table>

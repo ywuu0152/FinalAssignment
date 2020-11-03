@@ -5,6 +5,31 @@
 }
 
 <h2>Index</h2>
+
+@if (TempData["locationCreationFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["locationCreationFailedMsg"]');
+    </script>
+}
+
+
+@if (TempData["locationEditFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["locationEditFailedMsg"]');
+    </script>
+}
+
+
+@if (TempData["locationDeleteFailedMsg"] != null)
+{
+    <script type="text/javascript">
+       alert('@TempData["locationDeleteFailedMsg"]');
+    </script>
+}
+
+
 <div id="map" style="height:300px"></div>
 @section Scripts{
     <script src="~/Scripts/Location.js"></script>

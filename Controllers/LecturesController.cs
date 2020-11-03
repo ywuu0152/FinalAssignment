@@ -21,6 +21,7 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Details/5
+        [ValidateInput(true)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,10 +37,18 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Create
-        [Authorize(Roles = "Tutor")]
+        
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["lectureCreationFailedMsg"] = " Only tutors and administrators are allowed to create lectures! ";
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Lectures/Create
@@ -76,19 +85,28 @@ namespace FinalAssignment.Controllers
 
 
         // GET: Lectures/Edit/5
-        [Authorize(Roles = "Tutor")]
+        
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Lecture lecture = db.Lectures.Find(id);
+                if (lecture == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(lecture);
             }
-            Lecture lecture = db.Lectures.Find(id);
-            if (lecture == null)
+            else
             {
-                return HttpNotFound();
+                TempData["lectureEditFailedMsg"] = " Only tutors and administrators are allowed to edit lectures! ";
+                return RedirectToAction("Index");
             }
-            return View(lecture);
+
         }
 
         // POST: Lectures/Edit/5
@@ -108,19 +126,29 @@ namespace FinalAssignment.Controllers
         }
 
         // GET: Lectures/Delete/5
-        [Authorize(Roles = "Tutor")]
+        //[Authorize(Roles = "Tutor")]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Lecture lecture = db.Lectures.Find(id);
+                if (lecture == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(lecture);
             }
-            Lecture lecture = db.Lectures.Find(id);
-            if (lecture == null)
+            else
             {
-                return HttpNotFound();
+                TempData["lectureDeleteFailedMsg"] = " Only tutors and administrators are allowed to delete lectures! ";
+                return RedirectToAction("Index");
             }
-            return View(lecture);
+           
         }
 
         // POST: Lectures/Delete/5

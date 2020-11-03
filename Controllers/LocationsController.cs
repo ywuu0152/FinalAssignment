@@ -38,7 +38,16 @@ namespace FinalAssignment.Controllers
         // GET: Locations/Create
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["locationCreationFailedMsg"] = " Only tutors and administrators are allowed to create location! ";
+                return RedirectToAction("Index");
+            }
+            
         }
 
         // POST: Locations/Create
@@ -61,16 +70,27 @@ namespace FinalAssignment.Controllers
         // GET: Locations/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Location location = db.Locations.Find(id);
+                if (location == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(location);
             }
-            Location location = db.Locations.Find(id);
-            if (location == null)
+            else
             {
-                return HttpNotFound();
+                TempData["locationEditFailedMsg"] = " Only tutors and administrators are allowed to edit location! ";
+                return RedirectToAction("Index");
             }
-            return View(location);
+
+            
         }
 
         // POST: Locations/Edit/5
@@ -92,16 +112,25 @@ namespace FinalAssignment.Controllers
         // GET: Locations/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Location location = db.Locations.Find(id);
+                if (location == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(location);
             }
-            Location location = db.Locations.Find(id);
-            if (location == null)
+            else
             {
-                return HttpNotFound();
+                TempData["locationDeleteFailedMsg"] = " Only tutors and administrators are allowed to Delete location! ";
+                return RedirectToAction("Index");
             }
-            return View(location);
+            
         }
 
         // POST: Locations/Delete/5

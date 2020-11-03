@@ -38,7 +38,16 @@ namespace FinalAssignment.Controllers
         // GET: Tutors/Create
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["tutorCreationFailedMsg"] = " Only tutors and administrators are allowed to create tutors! ";
+                return RedirectToAction("Index");
+            }
+           
         }
 
         // POST: Tutors/Create
@@ -61,16 +70,25 @@ namespace FinalAssignment.Controllers
         // GET: Tutors/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Tutor tutor = db.Tutors.Find(id);
+                if (tutor == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tutor);
             }
-            Tutor tutor = db.Tutors.Find(id);
-            if (tutor == null)
+            else
             {
-                return HttpNotFound();
+                TempData["tutorEditFailedMsg"] = " Only tutors and administrators are allowed to edit tutors! ";
+                return RedirectToAction("Index");
             }
-            return View(tutor);
+            
         }
 
         // POST: Tutors/Edit/5
@@ -92,16 +110,25 @@ namespace FinalAssignment.Controllers
         // GET: Tutors/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Tutor tutor = db.Tutors.Find(id);
+                if (tutor == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tutor);
             }
-            Tutor tutor = db.Tutors.Find(id);
-            if (tutor == null)
+            else
             {
-                return HttpNotFound();
+                TempData["tutorEditFailedMsg"] = " Only tutors and administrators are allowed to edit tutors! ";
+                return RedirectToAction("Index");
             }
-            return View(tutor);
+            
         }
 
         // POST: Tutors/Delete/5
