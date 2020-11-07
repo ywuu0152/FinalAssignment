@@ -18,7 +18,7 @@ namespace FIT5032_Week08A.Utils
         public void Send(String toEmail, String subject, String contents)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("wuyu240411@gmail.com", "Yu Wu");
+            var from = new EmailAddress("wuyu240411@gmail.com", "莫纳什大学");
             var to = new EmailAddress(toEmail, "");
             var plainTextContent = contents;
             var htmlContent = "<p>" + contents + "</p>";

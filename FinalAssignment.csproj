@@ -201,6 +201,7 @@
     <Content Include="App_Data\aspnet-FinalAssignment-20201027125118_log.ldf">
       <DependentUpon>aspnet-FinalAssignment-20201027125118.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\002318.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -370,13 +371,20 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\lianxi.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\300px-Mondial_Ping_-_Men%27s_Singles_-_Round_4_-_Kenta_Matsudaira-Vladimir_Samsonov_-_57.jpg" />
+    <Content Include="Image\lecture.jpg" />
+    <Content Include="Image\location.jpg" />
+    <Content Include="Image\tutor.jpg" />
+    <Content Include="Image\下载.jpg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\loadPage.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker3.css.map" />
@@ -606,6 +614,11 @@
     <Content Include="Views\Tutors\Index.cshtml" />
     <Content Include="Views\Lectures\Error.cshtml" />
     <Content Include="Views\Home\Send_Email.cshtml" />
+    <Content Include="Views\Lectures\Chart.cshtml" />
+    <Content Include="Views\Lectures\Rate.cshtml" />
+    <Content Include="Views\Lectures\dateError.cshtml" />
+    <Content Include="Views\Lectures\Error1.cshtml" />
+    <Content Include="Views\Home\loader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Attachment\" />

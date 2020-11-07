@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Table Tennis Course Management System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    
 
     @* This is for the mapbox map. *@
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
@@ -16,7 +18,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="layout">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,13 +36,14 @@
                     <li>@Html.ActionLink("Lecture", "Index", "Lectures")</li>
                     <li>@Html.ActionLink("Tutor", "Index", "Tutors")</li>
                     <li>@Html.ActionLink("Location", "Index", "Locations")</li>
+                    <li>@Html.ActionLink("Chart", "Chart", "Lectures")</li>
 
-                    @if (User.Identity.IsAuthenticated) 
-                    { 
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <li>@Html.ActionLink("Send Email", "Send_Email", "Home")</li>
                     }
 
-                        
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,12 +53,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Table Tennis Course Management System</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/loadPage.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

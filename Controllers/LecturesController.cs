@@ -14,11 +14,36 @@ namespace FinalAssignment.Controllers
     {
         private assignmentModel db = new assignmentModel();
 
+        //List<Lecture> lectures = new List<Lecture>();
+        //List<int> grades = new List<int>();
+
+        public Lecture[] lectures = new Lecture[5];
+        public int[] grades = new int[5];
+        public static Lecture temp = new Lecture();
+
+
         // GET: Lectures
         public ActionResult Index()
         {
             return View(db.Lectures.ToList());
         }
+
+
+        public ActionResult Chart() 
+        {
+            int i = 0;
+            foreach (Lecture item in db.Lectures.ToList())
+            {
+                double a = double.Parse(item.grade);
+                // 100 points largest
+                a = a * 20;
+                grades[i] = (int)a;
+                i++;
+            }
+            ViewBag.Chart = grades;
+            return View();
+        }
+
 
         // GET: Lectures/Details/5
         [ValidateInput(true)]
@@ -36,8 +61,57 @@ namespace FinalAssignment.Controllers
             return View(lecture);
         }
 
+        // From ActionResult Details
+        public ActionResult Rate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Lecture lecture = db.Lectures.Find(id);
+            temp = lecture;
+            if (lecture == null)
+            {
+                return HttpNotFound();
+            }
+
+            List<SelectListItem> selection = new List<SelectListItem>();
+            selection.Add(new SelectListItem() { Text = "⭐", Value = "1", Selected = false });
+            selection.Add(new SelectListItem() { Text = "⭐⭐", Value = "2", Selected = false });
+            selection.Add(new SelectListItem() { Text = "⭐⭐⭐", Value = "3", Selected = false });
+            selection.Add(new SelectListItem() { Text = "⭐⭐⭐⭐", Value = "4", Selected = false });
+            selection.Add(new SelectListItem() { Text = "⭐⭐⭐⭐⭐", Value = "5", Selected = true });
+
+            ViewBag.Select = selection;
+
+            return View(lecture);
+        }
+        [HttpPost]
+        public ActionResult Rate(FormCollection form)
+        {
+            string rate = form["Select"];
+            int rateScore = 0;
+            int.TryParse(rate, out rateScore);
+            double dou = double.Parse(temp.grade);
+            double finalScore = (dou * temp.gradeNumber + rateScore) / (temp.gradeNumber + 1);
+            //temp.Score = Convert.ToString(finalScore);
+            temp.grade = String.Format("{0:F}", finalScore);
+            temp.gradeNumber++;
+
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(temp).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+
+            return View(temp);
+        }
+
         // GET: Lectures/Create
-        
+
         public ActionResult Create()
         {
             if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))
@@ -58,34 +132,51 @@ namespace FinalAssignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "lectureId,lectureName,description,date,grade,gradeNumber")] Lecture lecture)
         {
-            int i = lecture.gradeNumber;
-            if (i < 5)
+            Boolean a = true;
+            foreach (Lecture lec in db.Lectures.ToList())
             {
-                return RedirectToAction("Error", "Lectures");
-            }
-            else { 
-                if (ModelState.IsValid)
+                if (lec.date == lecture.date)
                 {
-                db.Lectures.Add(lecture);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    a = false;
                 }
-                return View(lecture);
-           
             }
 
-            
+            if (a == true)
+            {
+                int i = lecture.gradeNumber;
+                if (i == 0)
+                {
+                    return RedirectToAction("Error", "Lectures");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    db.Lectures.Add(lecture);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(lecture);
+            }
+            else
+            {
+                return RedirectToAction("Error1", "Lectures");
+            }
+          
         }
 
         public ActionResult Error() 
         {
-            return View();
-        
+            return View();       
         }
 
+        public ActionResult Error1()
+        {
+            return View();
+        }
 
         // GET: Lectures/Edit/5
-        
+
         public ActionResult Edit(int? id)
         {
             if (User.IsInRole("Tutor") || User.IsInRole("Administrator"))

@@ -77,6 +77,11 @@ namespace FinalAssignment.Controllers
             return View();
         }
 
+        public ActionResult loader()
+        {
+            return View();
+        }
+
     }
 
 }
