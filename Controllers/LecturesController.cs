@@ -78,9 +78,9 @@ namespace FinalAssignment.Controllers
             List<SelectListItem> selection = new List<SelectListItem>();
             selection.Add(new SelectListItem() { Text = "⭐", Value = "1", Selected = false });
             selection.Add(new SelectListItem() { Text = "⭐⭐", Value = "2", Selected = false });
-            selection.Add(new SelectListItem() { Text = "⭐⭐⭐", Value = "3", Selected = false });
+            selection.Add(new SelectListItem() { Text = "⭐⭐⭐", Value = "3", Selected = true });
             selection.Add(new SelectListItem() { Text = "⭐⭐⭐⭐", Value = "4", Selected = false });
-            selection.Add(new SelectListItem() { Text = "⭐⭐⭐⭐⭐", Value = "5", Selected = true });
+            selection.Add(new SelectListItem() { Text = "⭐⭐⭐⭐⭐", Value = "5", Selected = false });
 
             ViewBag.Select = selection;
 
@@ -94,7 +94,8 @@ namespace FinalAssignment.Controllers
             int.TryParse(rate, out rateScore);
             double dou = double.Parse(temp.grade);
             double finalScore = (dou * temp.gradeNumber + rateScore) / (temp.gradeNumber + 1);
-            //temp.Score = Convert.ToString(finalScore);
+
+            //Accurate to two decimal places
             temp.grade = String.Format("{0:F}", finalScore);
             temp.gradeNumber++;
 

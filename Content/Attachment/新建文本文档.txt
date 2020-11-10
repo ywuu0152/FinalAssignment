@@ -1,0 +1,15 @@
+magnet:?xt=urn:btih:
+
+
+ipconfig /registerdns
+
+ipconfig /registerdns
+
+ipconfig /release
+
+ipconfig /renew
+
+netsh winsock reset
+
+
+512741569@qq.com
